@@ -1,7 +1,10 @@
+using API_ASP.NET_Core_Procedure.Repository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddControllers();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
@@ -24,4 +27,3 @@ app.UseStaticFiles();
 app.UseRouting();
 app.MapControllers();
 app.Run();
-
